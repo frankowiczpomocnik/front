@@ -2,13 +2,16 @@
 import { useState } from 'react';
 import axios from 'axios';
 
+  const host = 'https://back-jy4t.onrender.com';
+//const host = 'http://localhost:3000';
+
 export default function TokenActions() {
   const [message, setMessage] = useState('');
   const [user, setUser] = useState(null);
 
   const generateToken = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/generate-token', {}, {
+      const response = await axios.post(`${host}/generate-token`, {}, {
         withCredentials: true,  // Обязательно для отправки cookies
       });
       setMessage(response.data.message);
@@ -19,7 +22,7 @@ export default function TokenActions() {
 
   const checkToken = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/check-token', {
+      const response = await axios.get(`${host}/check-token`, {
         withCredentials: true,  // Обязательно для отправки cookies
       });     
       setMessage(response.data.message);
